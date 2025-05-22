@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class GFManager : MonoBehaviour
 {
     [SerializeField] private Status _Status;
-    [SerializeField] private Transform _GirlFriendSpwaner;
+    [SerializeField] private Transform _GirlFriendSpawner;
 
     public int money;
 
@@ -16,8 +16,8 @@ public class GFManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //_Status.GirlFriendStatuses[Random.Range(0, _Status.GirlFriendStatuses.Length)].Colors;
-        //_Status.GirlFriendStatuses[0];
+        var color = _Status.GirlFriendStatuses[Random.Range(0, _Status.GirlFriendStatuses.Length)].Colors;
+        var monry = _Status.GirlFriendStatuses[0];
 
         float x = Random.Range(-7.5f,7.5f);
         float y = 4;
@@ -26,3 +26,4 @@ public class GFManager : MonoBehaviour
 
 
 }
+
