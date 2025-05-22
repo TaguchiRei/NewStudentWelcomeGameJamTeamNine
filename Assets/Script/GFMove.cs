@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GFMove : MonoBehaviour
 {
+    [SerializeField] GameObject _textBox;
+    [SerializeField] TextMesh _textMesh;
     [SerializeField] private float speed = 5f;
     [SerializeField] Vector3 _targetPos;
     private Rigidbody2D rb;
@@ -42,8 +44,8 @@ public class GFMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Keep"))
         {
         }
-
-       
+        _textBox.SetActive(true);
+        Invoke(nameof(DestroyObject),1f);
     }
     void OnMouseDrag()
     {
