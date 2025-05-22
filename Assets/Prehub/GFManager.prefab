@@ -150,3 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29476c699bdd4f0449a54921a04ca59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Status: {fileID: 0}
+  _GirlFriendSpawner: {fileID: 0}
+  money: 0
+  GirlFriend: {fileID: 5285144405535714158}
+  GirlFriends: []
