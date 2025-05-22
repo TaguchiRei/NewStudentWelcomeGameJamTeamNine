@@ -1,14 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeMove : MonoBehaviour
+public class VelocityExample : MonoBehaviour
 {
-    private float speed = 5.0f;
-    [SerializeField] Transform target;
+    [SerializeField] private float speed = 5f;
+    private Rigidbody rb;
 
-    void Update()
+    void Start()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        rb = GetComponent<Rigidbody>();
+    }
+    void FixedUpdate()
+    {
+        Vector3 targetPosition = new Vector3(-6.18f, -0.78f, 0); // 目的の位置の座標を指定
+
+        rb.MovePosition(targetPosition); // 目的の位置に移動
     }
 }
