@@ -49,15 +49,11 @@ public class GameManager : MonoBehaviour
     private void AddScore(int score, int magnification)
     {
         Score += score * magnification;
-<<<<<<< Updated upstream
-=======
         Invoke(nameof(AAA), 1f);
     }
 
     private void AAA()
     {
-
->>>>>>> Stashed changes
     }
 
     IEnumerator CountDown()
