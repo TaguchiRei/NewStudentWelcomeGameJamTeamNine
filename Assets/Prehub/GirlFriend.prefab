@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22586a14e9847344aa1a79b915aa9fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _textBox: {fileID: 5703371522482608489}
+  _textMesh: {fileID: 4439672904524142304}
   speed: 5
   _targetPos: {x: 0, y: 0, z: 0}
 --- !u!50 &-3232678439060848633
