@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Status
   m_EditorClassIdentifier: 
   GirlFriendStatuses:
-  - Colors: {r: 1, g: 0, b: 0, a: 0}
+  - Colors: {r: 1, g: 0, b: 0, a: 1}
     Money: 1000
-  - Colors: {r: 0, g: 0, b: 1, a: 0}
+  - Colors: {r: 0, g: 0, b: 1, a: 1}
     Money: -1000
-  - Colors: {r: 0, g: 0, b: 0, a: 0}
+  - Colors: {r: 0, g: 0, b: 0, a: 1}
     Money: -10000
