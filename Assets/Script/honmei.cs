@@ -3,16 +3,20 @@ using UnityEngine;
 public class VelocityExample : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    private Rigidbody rb;
+    [SerializeField] Vector3 _targetPos;
+    private Rigidbody2D rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
     void FixedUpdate()
     {
-        Vector3 targetPosition = new Vector3(-6.18f, -0.78f, 0); // 目的の位置の座標を指定
+        var nowPos = transform.position;
 
-        rb.MovePosition(targetPosition); // 目的の位置に移動
+        var moveV= _targetPos - nowPos;
+        moveV.Normalize();
+
+        rb.velocity = moveV *speed;
     }
 }
