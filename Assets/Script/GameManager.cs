@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text _countDownText;
     [SerializeField] private Text _scoreText;
     private float _timer;
-
     private bool _timerStarted = false;
+    public int Score { get; private set; }
 
     private void Start()
     {
@@ -28,16 +28,16 @@ public class GameManager : MonoBehaviour
 
         if (_timer <= 0)
         {
-            
+            _timeText.text = "0";
+            ShowScore();
         }
         else
         {
             _timer -= Time.deltaTime;
-            _timeText.text = _timer.ToString();
+            _timeText.text = Mathf.FloorToInt(_timer).ToString();
         }
     }
 
-    public int Score { get; private set; }
 
     private void ShowScore()
     {
@@ -47,13 +47,8 @@ public class GameManager : MonoBehaviour
     public void AddScore(float score, float magnification)
     {
         Score += (int)(score * magnification);
-        Invoke(nameof(AAA), 1f);
     }
-
-    private void AAA()
-    {
-    }
-
+    
     IEnumerator CountDown()
     {
         for (int i = 3; i > 0; i--)
