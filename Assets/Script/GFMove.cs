@@ -26,4 +26,15 @@ public class GFMove : MonoBehaviour
             rb.velocity = moveV * speed;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Love"))
+        {
+        }
+        if (collision.gameObject.CompareTag("Keep"))
+        {
+        }
+        Destroy(gameObject);//このゲームオブジェクトを消滅させる
+    }
 }
