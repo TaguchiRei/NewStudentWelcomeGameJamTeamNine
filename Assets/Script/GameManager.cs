@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         if(!_timerStarted) return;
         
         _timer -= Time.deltaTime;
+        _timeText.text = _timer.ToString();
         if (_timer <= 0)
         {
             
