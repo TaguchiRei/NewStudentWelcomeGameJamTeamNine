@@ -1,7 +1,8 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class VelocityExample : MonoBehaviour
+public class GFMove : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] Vector3 _targetPos;
@@ -12,16 +13,6 @@ public class VelocityExample : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-
-
-
-
-
-
-
-
-
     void FixedUpdate()
     {
         if (_mouseClick)
