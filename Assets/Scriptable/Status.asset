@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9680fd73d957b449e2b03a3b93ba6e, type: 3}
   m_Name: Status
   m_EditorClassIdentifier: 
-  GirlFriendStatuses: []
+  GirlFriendStatuses:
+  - Colors: {r: 1, g: 0, b: 0, a: 0}
+    Money: 1000
+  - Colors: {r: 0, g: 0, b: 1, a: 0}
+    Money: -1000
+  - Colors: {r: 0, g: 0, b: 0, a: 0}
+    Money: -10000
