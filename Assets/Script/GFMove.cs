@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GFMove : MonoBehaviour
@@ -9,6 +8,8 @@ public class GFMove : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] Vector3 _targetPos;
     private Rigidbody2D rb;
+
+    public Action AddScore;
 
     bool _mouseClick ;
     void Start()
@@ -45,16 +46,17 @@ public class GFMove : MonoBehaviour
         {
         }
         _textBox.SetActive(true);
+        AddScore?.Invoke();
         Invoke(nameof(DestroyObject),1f);
     }
     void OnMouseDrag()
     {
-        //ƒ}ƒEƒXƒJ[ƒ\ƒ‹‹y‚ÑƒIƒuƒWƒFƒNƒg‚ÌƒXƒNƒŠ[ƒ“À•W‚ğæ“¾
+        //ï¿½}ï¿½Eï¿½Xï¿½Jï¿½[ï¿½\ï¿½ï¿½ï¿½yï¿½ÑƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌƒXï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½æ“¾
         Vector3 objectScreenPoint =
            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//ƒXƒNƒŠ[ƒ“À•W‚ğƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·
+        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Wï¿½É•ÏŠï¿½
 
-        transform.position = objectWorldPoint; //ƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ğ•ÏX‚·‚é
+        transform.position = objectWorldPoint; //ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ìï¿½ï¿½Wï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½
     }
 
     private void OnMouseDown()

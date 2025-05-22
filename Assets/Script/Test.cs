@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Test : MonoBehaviour
@@ -12,6 +11,11 @@ public class Test : MonoBehaviour
     public int money;
 
     private void Start()
+    {
+        
+    }
+
+    public void GenerateGirl(int a, float b , string name, Status status)
     {
         
     }

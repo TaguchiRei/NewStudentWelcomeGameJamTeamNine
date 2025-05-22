@@ -522,6 +522,7 @@ MonoBehaviour:
   _timeLimit: 30
   _timeText: {fileID: 656166884}
   _countDownText: {fileID: 28557754}
+  _scoreText: {fileID: 28557754}
 --- !u!4 &1809873103
 Transform:
   m_ObjectHideFlags: 0
