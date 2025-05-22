@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     
     private void ShowScore()
     {
+        _scoreText.enabled = true;
         _scoreText.text = "Score" + Score;
     }
 
