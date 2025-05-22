@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     {
         Score += score * magnification;
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
     IEnumerator CountDown()
     {
