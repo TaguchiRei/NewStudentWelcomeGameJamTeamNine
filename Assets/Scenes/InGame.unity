@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29476c699bdd4f0449a54921a04ca59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Status: {fileID: 11400000, guid: 7dbc62c20bd529647a9c9c1ba5dce3a5, type: 2}
-  _GirlFriendSpawner: {fileID: 330759480}
+  _status: {fileID: 11400000, guid: 7dbc62c20bd529647a9c9c1ba5dce3a5, type: 2}
+  _gameManager: {fileID: 1809873102}
   money: 0
   GirlFriend: {fileID: 4341164783609617236, guid: 0e623e1008513ab4bafa6d2f4ae83b32, type: 3}
   spawnInterval: 2
@@ -374,7 +374,7 @@ Transform:
   m_GameObject: {fileID: 305256330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49, y: -5.55, z: 0}
+  m_LocalPosition: {x: 0, y: -5.55, z: 0}
   m_LocalScale: {x: 10, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

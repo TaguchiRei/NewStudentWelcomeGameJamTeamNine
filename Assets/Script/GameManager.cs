@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(float score, float magnification)
     {
         Score += (int)(score * magnification);
+        Debug.Log($"add score : {score}");
     }
     
     IEnumerator CountDown()

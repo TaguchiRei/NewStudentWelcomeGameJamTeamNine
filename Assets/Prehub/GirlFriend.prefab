@@ -103,7 +103,8 @@ MonoBehaviour:
   _textBox: {fileID: 5703371522482608489}
   _textMesh: {fileID: 4439672904524142304}
   speed: 5
-  _targetPos: {x: 0, y: 0, z: 0}
+  _targetPos: {x: 0, y: -5.55, z: 0}
+  Money: 0
 --- !u!50 &-3232678439060848633
 Rigidbody2D:
   serializedVersion: 4
