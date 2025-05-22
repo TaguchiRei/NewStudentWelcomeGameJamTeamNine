@@ -235,6 +235,7 @@ MonoBehaviour:
   money: 0
   GirlFriend: {fileID: 4341164783609617236, guid: 0e623e1008513ab4bafa6d2f4ae83b32, type: 3}
   spawnInterval: 2
+  isStarted: 0
 --- !u!4 &202852595
 Transform:
   m_ObjectHideFlags: 0
@@ -858,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6021581870b21a541a6395eab1aef08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gfManager: {fileID: 202852594}
   _timeLimit: 30
   _timeText: {fileID: 656166884}
   _countDownText: {fileID: 28557754}
