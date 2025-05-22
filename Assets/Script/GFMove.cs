@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GFMove : MonoBehaviour
 {
@@ -8,23 +9,29 @@ public class GFMove : MonoBehaviour
     [SerializeField] TextMesh _textMesh;
     [SerializeField] private float speed = 5f;
     [SerializeField] Vector3 _targetPos;
+
+    private GameObject _targetObject;
     private Rigidbody2D rb;
 
     bool _mouseClick ;
+    private bool _isGoaled;
+
+    public int Money;
+    public Action<float, float> OnGoal;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _targetObject = GameObject.FindGameObjectWithTag("Love");
     }
     void FixedUpdate()
     {
+        if (_isGoaled) return;
         if (!_mouseClick)
         {
-
             var nowPos = transform.position;
-
             var moveV = _targetPos - nowPos;
             moveV.Normalize();
-
             rb.velocity = moveV * speed;
         }
     }
@@ -33,28 +40,31 @@ public class GFMove : MonoBehaviour
         Destroy(gameObject);
     }
     
-        
-    
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(_isGoaled) return;
         if (collision.gameObject.CompareTag("Love"))
         {
+            OnGoal?.Invoke(Money, 1);
         }
         if (collision.gameObject.CompareTag("Keep"))
         {
+            OnGoal?.Invoke(Money, 0.5f);
         }
+        _isGoaled = true;
+        rb.velocity = Vector2.zero;
         _textBox.SetActive(true);
         Invoke(nameof(DestroyObject),1f);
     }
     void OnMouseDrag()
     {
-        //ƒ}ƒEƒXƒJ[ƒ\ƒ‹‹y‚ÑƒIƒuƒWƒFƒNƒg‚ÌƒXƒNƒŠ[ƒ“À•W‚ğæ“¾
+        if (_isGoaled) return;
+        //ï¿½}ï¿½Eï¿½Xï¿½Jï¿½[ï¿½\ï¿½ï¿½ï¿½yï¿½ÑƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌƒXï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½æ“¾
         Vector3 objectScreenPoint =
            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//ƒXƒNƒŠ[ƒ“À•W‚ğƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·
+        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Wï¿½É•ÏŠï¿½
 
-        transform.position = objectWorldPoint; //ƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ğ•ÏX‚·‚é
+        transform.position = objectWorldPoint; //ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ìï¿½ï¿½Wï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½
     }
 
     private void OnMouseDown()

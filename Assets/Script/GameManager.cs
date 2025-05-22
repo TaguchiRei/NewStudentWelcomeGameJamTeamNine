@@ -3,17 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GFManager _gfManager;
     [SerializeField] private float _timeLimit;
     [SerializeField] private Text _timeText;
     [SerializeField] private Text _countDownText;
     [SerializeField] private Text _scoreText;
     private float _timer;
-
     private bool _timerStarted = false;
+    public int Score { get; private set; }
 
     private void Start()
     {
@@ -26,36 +28,30 @@ public class GameManager : MonoBehaviour
     {
         if (!_timerStarted) return;
 
-        _timer -= Time.deltaTime;
-        _timeText.text = _timer.ToString();
         if (_timer <= 0)
         {
-
+            _timeText.text = "0";
+            ShowScore();
+        }
+        else
+        {
+            _timer -= Time.deltaTime;
+            _timeText.text = Mathf.FloorToInt(_timer).ToString();
         }
     }
-
-    public int Score
-    {
-
-        get;
-        private set;
-    }
-
+    
     private void ShowScore()
     {
+        _scoreText.enabled = true;
         _scoreText.text = "Score" + Score;
     }
 
-    private void AddScore(int score, int magnification)
+    public void AddScore(float score, float magnification)
     {
-        Score += score * magnification;
-        Invoke(nameof(AAA), 1f);
+        Score += (int)(score * magnification);
+        Debug.Log($"add score : {score}");
     }
-
-    private void AAA()
-    {
-    }
-
+    
     IEnumerator CountDown()
     {
         for (int i = 3; i > 0; i--)
@@ -67,5 +63,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         _countDownText.enabled = false;
         _timerStarted = true;
+        _gfManager.isStarted = true;
     }
 }
