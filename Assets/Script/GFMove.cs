@@ -26,6 +26,13 @@ public class GFMove : MonoBehaviour
             rb.velocity = moveV * speed;
         }
     }
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
+    
+        
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,6 +42,7 @@ public class GFMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Keep"))
         {
         }
-        Destroy(gameObject);//このゲームオブジェクトを消滅させる
+
+       
     }
 }
