@@ -17,7 +17,7 @@ public class GFManager : MonoBehaviour
     private void Start()
     {
         var color = _Status.GirlFriendStatuses[Random.Range(0, _Status.GirlFriendStatuses.Length)].Colors;
-        var monry = _Status.GirlFriendStatuses[0];
+        var money = _Status.GirlFriendStatuses[0];
 
         float x = Random.Range(-7.5f,7.5f);
         float y = 4;
