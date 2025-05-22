@@ -41,6 +41,12 @@ public class GameManager : MonoBehaviour
     private void AddScore(int score, int magnification)
     {
         Score += score * magnification;
+        Invoke(nameof(AAA), 1f);
+    }
+
+    private void AAA()
+    {
+        
     }
 
     IEnumerator CountDown()
