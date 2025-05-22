@@ -52,6 +52,7 @@ public class GFMove : MonoBehaviour
             OnGoal?.Invoke(Money, 0.5f);
         }
         _isGoaled = true;
+        rb.velocity = Vector2.zero;
         _textBox.SetActive(true);
         Invoke(nameof(DestroyObject),1f);
     }
