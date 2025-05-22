@@ -8,7 +8,6 @@ using Random = UnityEngine.Random;
 public class GFManager : MonoBehaviour
 {
     [SerializeField] private Status _Status;
-
     [SerializeField] private Transform _GirlFriendSpwaner;
 
     public int money;
