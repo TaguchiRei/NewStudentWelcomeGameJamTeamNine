@@ -26,29 +26,27 @@ public class GameManager : MonoBehaviour
     {
         if (!_timerStarted) return;
 
-        _timer -= Time.deltaTime;
-        _timeText.text = _timer.ToString();
         if (_timer <= 0)
         {
-
+            
+        }
+        else
+        {
+            _timer -= Time.deltaTime;
+            _timeText.text = _timer.ToString();
         }
     }
 
-    public int Score
-    {
-
-        get;
-        private set;
-    }
+    public int Score { get; private set; }
 
     private void ShowScore()
     {
         _scoreText.text = "Score" + Score;
     }
 
-    private void AddScore(int score, int magnification)
+    public void AddScore(float score, float magnification)
     {
-        Score += score * magnification;
+        Score += (int)(score * magnification);
         Invoke(nameof(AAA), 1f);
     }
 
@@ -63,6 +61,7 @@ public class GameManager : MonoBehaviour
             _countDownText.text = i.ToString();
             yield return new WaitForSeconds(1f);
         }
+
         _countDownText.text = "Start!";
         yield return new WaitForSeconds(1f);
         _countDownText.enabled = false;
