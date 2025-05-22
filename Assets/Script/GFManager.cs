@@ -19,8 +19,11 @@ public class GFManager : MonoBehaviour
     public float spawnInterval = 2f;
     // Start is called before the first frame update
 
+    public bool isStarted = false;
+    
     private void Update()
     {
+        if(!isStarted) return;
         if (Time.time >= nextSpawnTime)
         {
             var randomStatus = Random.Range(0, _status.GirlFriendStatuses.Length);

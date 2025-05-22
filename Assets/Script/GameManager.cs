@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GFManager _gfManager;
     [SerializeField] private float _timeLimit;
     [SerializeField] private Text _timeText;
     [SerializeField] private Text _countDownText;
@@ -37,8 +39,7 @@ public class GameManager : MonoBehaviour
             _timeText.text = Mathf.FloorToInt(_timer).ToString();
         }
     }
-
-
+    
     private void ShowScore()
     {
         _scoreText.text = "Score" + Score;
@@ -57,10 +58,10 @@ public class GameManager : MonoBehaviour
             _countDownText.text = i.ToString();
             yield return new WaitForSeconds(1f);
         }
-
         _countDownText.text = "Start!";
         yield return new WaitForSeconds(1f);
         _countDownText.enabled = false;
         _timerStarted = true;
+        _gfManager.isStarted = true;
     }
 }
