@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VelocityExample : MonoBehaviour
@@ -6,17 +7,32 @@ public class VelocityExample : MonoBehaviour
     [SerializeField] Vector3 _targetPos;
     private Rigidbody2D rb;
 
+    bool _mouseClick = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
+
+
+
+
+
+
+
+
+
     void FixedUpdate()
     {
-        var nowPos = transform.position;
+        if (_mouseClick)
+        {
 
-        var moveV= _targetPos - nowPos;
-        moveV.Normalize();
+            var nowPos = transform.position;
 
-        rb.velocity = moveV *speed;
+            var moveV = _targetPos - nowPos;
+            moveV.Normalize();
+
+            rb.velocity = moveV * speed;
+        }
     }
 }
