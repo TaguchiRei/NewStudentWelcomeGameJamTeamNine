@@ -9,4 +9,9 @@ public class GameManager : MonoBehaviour
         get;
         private set;
     }
+
+    private void AddScore(int score, int magnification)
+    {
+        Score += score * magnification;
+    }
 }
