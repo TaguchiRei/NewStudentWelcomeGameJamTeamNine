@@ -15,19 +15,23 @@ public class GFMove : MonoBehaviour
     private GameObject _targetObject;
     private Rigidbody2D rb;
 
-    bool _mouseClick ;
+    bool _mouseClick;
     private bool _isGoaled;
 
     public int Money;
-    public int  GFIndex;
+    public int GFIndex;
     public Action<float, float> OnGoal;
     public Action<int> CheckLegacy;
-    
+
+    private GFManager _gfManager;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         _targetObject = GameObject.FindGameObjectWithTag("Love");
+        _gfManager = FindObjectOfType<GFManager>();
     }
+
     void FixedUpdate()
     {
         if (_isGoaled) return;
@@ -38,15 +42,21 @@ public class GFMove : MonoBehaviour
             moveV.Normalize();
             rb.velocity = moveV * speed;
         }
+
+        if (_gfManager.isEnded)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
+
     private void DestroyObject()
     {
         Destroy(gameObject);
     }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_isGoaled) return;
+        if (_isGoaled || _gfManager.isEnded) return;
         if (collision.gameObject.CompareTag("Love"))
         {
             OnGoal?.Invoke(Money, 1);
@@ -54,6 +64,7 @@ public class GFMove : MonoBehaviour
             _textMesh.text = _talkDate[0].talkData[index].Talk;
             CheckLegacy?.Invoke(GFIndex);
         }
+
         if (collision.gameObject.CompareTag("Keep"))
         {
             OnGoal?.Invoke(Money, 0.5f);
@@ -61,23 +72,26 @@ public class GFMove : MonoBehaviour
             _textMesh.text = _talkDate[1].talkData[index].Talk;
             CheckLegacy?.Invoke(GFIndex);
         }
+
         if (collision.gameObject.CompareTag("brake"))
         {
             OnGoal?.Invoke(Money, 0.5f);
             var index = Random.Range(0, _talkDate[2].talkData.Count);
             _textMesh.text = _talkDate[2].talkData[index].Talk;
         }
+
         _isGoaled = true;
         rb.velocity = Vector2.zero;
         _textBox.SetActive(true);
-        Invoke(nameof(DestroyObject),1f);
+        Invoke(nameof(DestroyObject), 1f);
     }
+
     void OnMouseDrag()
     {
-        if (_isGoaled) return;
+        if (_isGoaled || _gfManager.isEnded) return;
         Vector3 objectScreenPoint =
-           new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//?X?N???[?????W?????[???h???W????
+            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint); //?X?N???[?????W?????[???h???W????
 
         transform.position = objectWorldPoint; //?I?u?W?F?N?g????W???X????
     }
@@ -86,6 +100,7 @@ public class GFMove : MonoBehaviour
     {
         _mouseClick = true;
     }
+
     private void OnMouseUp()
     {
         _mouseClick = false;

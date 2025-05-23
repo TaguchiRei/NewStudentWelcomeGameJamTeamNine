@@ -20,16 +20,17 @@ public class GFManager : MonoBehaviour
     // Start is called before the first frame update
 
     public bool isStarted = false;
+    public bool isEnded = false;
     
     private void Update()
     {
-        if(!isStarted) return;
+        if(!isStarted || isEnded) return;
         if (Time.time >= nextSpawnTime)
         {
             var randomStatus = Random.Range(0, _status.GirlFriendStatuses.Length);
             var colors = _status.GirlFriendStatuses[randomStatus].Colors;
             var money = _status.GirlFriendStatuses[randomStatus].Money;
-            float x = Random.Range(-7.5f, 7.5f);
+            float x = Random.Range(-7f, 7f);
             float y = 4;
             var obj = Instantiate(GirlFriend, new Vector2(x, y), GirlFriend.transform.rotation);
             obj.GetComponent<SpriteRenderer>().color = colors;

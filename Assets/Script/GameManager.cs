@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] SceneLoadManager _sceneLoadManager;
     private float _timer;
     private bool _timerStarted = false;
-
+    
     private float _changeTimer;
     public int _girlFriendIndex
     {
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         if (_timer <= 0)
         {
             _timeText.text = "0";
+            _gfManager.isEnded = true;
             ShowScore();
         }
         else
