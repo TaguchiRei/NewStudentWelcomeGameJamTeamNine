@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         {
             _girlFriendIndex = Random.Range(0, _status.GirlFriendStatuses.Length);
             _spriteRenderer.color = _status.GirlFriendStatuses[_girlFriendIndex].Colors;
+            _changeTimer = 0;
 
         }
     }
