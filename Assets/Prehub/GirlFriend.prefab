@@ -92,11 +92,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4590352172771257299}
-  - component: {fileID: 3485296726147520908}
-  - component: {fileID: 925257491292502323}
-  - component: {fileID: -3232678439060848633}
-  - component: {fileID: 5942747119207967136}
   - component: {fileID: 2400873501045839569}
   - component: {fileID: 4871693084041047970}
   m_Layer: 0
@@ -279,8 +274,13 @@ MonoBehaviour:
   _textMesh: {fileID: 7313986917350957920}
   speed: 5
   _targetPos: {x: 0, y: -5.55, z: 0}
-  _talkDate: []
+  _talkDate:
+  - {fileID: 11400000, guid: b9ee9e690591a614ebdf7df28bd1bf22, type: 2}
+  - {fileID: 11400000, guid: 24585f2746c47234eaaa00474d2b2880, type: 2}
+  - {fileID: 11400000, guid: 746e198a8b727e14a9e40667d4cd8735, type: 2}
+  - {fileID: 11400000, guid: 46353d2ff46d8e545bd41ca76d9ab6f0, type: 2}
   Money: 0
+  GFIndex: 0
 --- !u!50 &8006686146901266276
 Rigidbody2D:
   serializedVersion: 4

@@ -52,12 +52,14 @@ public class GFMove : MonoBehaviour
             OnGoal?.Invoke(Money, 1);
             var index = Random.Range(0, _talkDate[0].talkData.Count);
             _textMesh.text = _talkDate[0].talkData[index].Talk;
+            CheckLegacy?.Invoke(GFIndex);
         }
         if (collision.gameObject.CompareTag("Keep"))
         {
             OnGoal?.Invoke(Money, 0.5f);
             var index = Random.Range(0, _talkDate[1].talkData.Count);
             _textMesh.text = _talkDate[1].talkData[index].Talk;
+            CheckLegacy?.Invoke(GFIndex);
         }
         if (collision.gameObject.CompareTag("brake"))
         {
@@ -68,7 +70,6 @@ public class GFMove : MonoBehaviour
         _isGoaled = true;
         rb.velocity = Vector2.zero;
         _textBox.SetActive(true);
-        CheckLegacy?.Invoke(GFIndex);
         Invoke(nameof(DestroyObject),1f);
     }
     void OnMouseDrag()
