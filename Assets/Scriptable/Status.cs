@@ -11,4 +11,5 @@ public class Status : ScriptableObject
 public class GirlFriendStatus
 {
     public Color Colors;
+    public int Money;
 }

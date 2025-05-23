@@ -12,5 +12,4 @@ public class Talk : ScriptableObject
 public class TalkData
 {
     public string Talk;
-    public int Money;
 }

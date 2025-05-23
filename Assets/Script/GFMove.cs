@@ -12,7 +12,6 @@ public class GFMove : MonoBehaviour
     [SerializeField] Vector3 _targetPos;
     [SerializeField] Talk[] _talkDate;
 
-
     private GameObject _targetObject;
     private Rigidbody2D rb;
 
@@ -56,7 +55,6 @@ public class GFMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Keep"))
         {
             OnGoal?.Invoke(Money, 0.5f);
-
             var index = Random.Range(0, _talkDate[1].talkData.Count);
 
             _textMesh.text = _talkDate[1].talkData[index].Talk;
@@ -72,12 +70,10 @@ public class GFMove : MonoBehaviour
         rb.velocity = Vector2.zero;
         _textBox.SetActive(true);
         Invoke(nameof(DestroyObject),1f);
-        
     }
     void OnMouseDrag()
     {
         if (_isGoaled) return;
-        //?}?E?X?J?[?\???y?ÑÖI?u?W?F?N?g??X?N???[?????W???èÔ
         Vector3 objectScreenPoint =
            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
         Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//?X?N???[?????W?????[???h???W????

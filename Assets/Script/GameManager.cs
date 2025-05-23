@@ -3,55 +3,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]private float _timeLimit;
+    [SerializeField] private GFManager _gfManager;
+    [SerializeField] private float _timeLimit;
     [SerializeField] private Text _timeText;
     [SerializeField] private Text _countDownText;
+    [SerializeField] private Text _scoreText;
+    [SerializeField]SpriteRenderer _spriteRenderer;
+    [SerializeField] Status _status;
     private float _timer;
-
     private bool _timerStarted = false;
+    private int _girlFriendIndex;
+    public int Score { get; private set; }
 
     private void Start()
     {
+        _scoreText.enabled = false;
         _timer = _timeLimit;
         StartCoroutine(CountDown());
+        _girlFriendIndex = Random.Range(0, _status.GirlFriendStatuses.Length);
+        _spriteRenderer.color = _status.GirlFriendStatuses[_girlFriendIndex].Colors;
     }
 
     private void Update()
     {
-        if(!_timerStarted) return;
-        
-        _timer -= Time.deltaTime;
-        _timeText.text = _timer.ToString();
+        if (!_timerStarted) return;
+
         if (_timer <= 0)
         {
-            
+            _timeText.text = "0";
+            ShowScore();
+        }
+        else
+        {
+            _timer -= Time.deltaTime;
+            _timeText.text = Mathf.FloorToInt(_timer).ToString();
         }
     }
-
-    public int Score
+    
+    private void ShowScore()
     {
-        get;
-        private set;
+        _scoreText.enabled = true;
+        _scoreText.text = "Score" + Score;
     }
 
-    private void AddScore(int score, int magnification)
+    public void AddScore(float score, float magnification)
     {
-        Score += score * magnification;
-        Invoke(nameof(AAA), 1f);
+        Score += (int)(score * magnification);
+        Debug.Log($"add score : {score}");
     }
-
-    private void AAA()
-    {
-        
-    }
-
+    
     IEnumerator CountDown()
     {
-        for (int i = 3; i > 0 ; i--)
+        for (int i = 3; i > 0; i--)
         {
             _countDownText.text = i.ToString();
             yield return new WaitForSeconds(1f);
@@ -60,5 +69,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         _countDownText.enabled = false;
         _timerStarted = true;
+        _gfManager.isStarted = true;
     }
 }
