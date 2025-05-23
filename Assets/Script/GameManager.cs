@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using unityroom.Api;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     private bool _timerStarted = false;
     
     private float _changeTimer;
+    
+    private bool _isSended = false;
     public int _girlFriendIndex
     {
         get;
@@ -52,6 +55,12 @@ public class GameManager : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 _sceneLoadManager.LoadScene("StartScene");
+            }
+
+            if (!_isSended)
+            {
+                UnityroomApiClient.Instance.SendScore(1,Score,ScoreboardWriteMode.HighScoreDesc);
+                _isSended = true;
             }
         }
         else
