@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text _timeText;
     [SerializeField] private Text _countDownText;
     [SerializeField] private Text _scoreText;
+    [SerializeField]SpriteRenderer _spriteRenderer;
+    [SerializeField] Status _status;
     private float _timer;
     private bool _timerStarted = false;
+    private int _girlFriendIndex;
     public int Score { get; private set; }
 
     private void Start()
@@ -22,6 +26,8 @@ public class GameManager : MonoBehaviour
         _scoreText.enabled = false;
         _timer = _timeLimit;
         StartCoroutine(CountDown());
+        _girlFriendIndex = Random.Range(0, _status.GirlFriendStatuses.Length);
+        _spriteRenderer.color = _status.GirlFriendStatuses[_girlFriendIndex].Colors;
     }
 
     private void Update()
