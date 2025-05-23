@@ -19,7 +19,9 @@ public class GFMove : MonoBehaviour
     private bool _isGoaled;
 
     public int Money;
+    public int  GFIndex;
     public Action<float, float> OnGoal;
+    public Action<int> CheckLegacy;
     
     void Start()
     {
@@ -66,6 +68,7 @@ public class GFMove : MonoBehaviour
         _isGoaled = true;
         rb.velocity = Vector2.zero;
         _textBox.SetActive(true);
+        CheckLegacy?.Invoke(GFIndex);
         Invoke(nameof(DestroyObject),1f);
     }
     void OnMouseDrag()

@@ -11,14 +11,22 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GFManager _gfManager;
     [SerializeField] private float _timeLimit;
+    [SerializeField] private float _changeLimit;
     [SerializeField] private Text _timeText;
     [SerializeField] private Text _countDownText;
     [SerializeField] private Text _scoreText;
-    [SerializeField]SpriteRenderer _spriteRenderer;
+    [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Status _status;
+    [SerializeField] SceneLoadManager _sceneLoadManager;
     private float _timer;
     private bool _timerStarted = false;
-    private int _girlFriendIndex;
+
+    private float _changeTimer;
+    public int _girlFriendIndex
+    {
+        get;
+        private set;
+    }
     public int Score { get; private set; }
 
     private void Start()
@@ -44,8 +52,16 @@ public class GameManager : MonoBehaviour
             _timer -= Time.deltaTime;
             _timeText.text = Mathf.FloorToInt(_timer).ToString();
         }
+        _changeTimer += Time.deltaTime;
+        if (_changeTimer >= _changeLimit)
+        {
+            _girlFriendIndex = Random.Range(0, _status.GirlFriendStatuses.Length);
+            _spriteRenderer.color = _status.GirlFriendStatuses[_girlFriendIndex].Colors;
+            _changeTimer = 0;
+
+        }
     }
-    
+
     private void ShowScore()
     {
         _scoreText.enabled = true;
@@ -57,7 +73,15 @@ public class GameManager : MonoBehaviour
         Score += (int)(score * magnification);
         Debug.Log($"add score : {score}");
     }
-    
+    public void LegacyCheck(int index)
+    {
+        if (_girlFriendIndex == index)
+        {
+            _sceneLoadManager.LoadScene("GameOver");
+        }
+
+    }
+
     IEnumerator CountDown()
     {
         for (int i = 3; i > 0; i--)
