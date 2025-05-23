@@ -1,55 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
-<<<<<<< Updated upstream
-=======
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
->>>>>>> Stashed changes
 
 public class GFMove : MonoBehaviour
 {
+    [SerializeField] GameObject _textBox;
+    [SerializeField] TextMesh _textMesh;
     [SerializeField] private float speed = 5f;
     [SerializeField] Vector3 _targetPos;
-<<<<<<< Updated upstream
-=======
     [SerializeField] Talk[] _talkDate;
 
 
     private GameObject _targetObject;
->>>>>>> Stashed changes
     private Rigidbody2D rb;
 
     bool _mouseClick ;
+    private bool _isGoaled;
+
+    public int Money;
+    public Action<float, float> OnGoal;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _targetObject = GameObject.FindGameObjectWithTag("Love");
     }
     void FixedUpdate()
     {
+        if (_isGoaled) return;
         if (!_mouseClick)
         {
-
             var nowPos = transform.position;
-
             var moveV = _targetPos - nowPos;
             moveV.Normalize();
-
             rb.velocity = moveV * speed;
         }
     }
-
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(_isGoaled) return;
         if (collision.gameObject.CompareTag("Love"))
         {
-<<<<<<< Updated upstream
-        }
-        if (collision.gameObject.CompareTag("Keep"))
-        {
-        }
-        Destroy(gameObject);//このゲームオブジェクトを消滅させる
-=======
             OnGoal?.Invoke(Money, 1);
             var index = Random.Range(0, _talkDate[0].talkData.Count);
 
@@ -75,16 +73,16 @@ public class GFMove : MonoBehaviour
         _textBox.SetActive(true);
         Invoke(nameof(DestroyObject),1f);
         
->>>>>>> Stashed changes
     }
     void OnMouseDrag()
     {
-        //マウスカーソル及びオブジェクトのスクリーン座標を取得
+        if (_isGoaled) return;
+        //?}?E?X?J?[?\???y?уI?u?W?F?N?g??X?N???[?????W???擾
         Vector3 objectScreenPoint =
            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//スクリーン座標をワールド座標に変換
+        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//?X?N???[?????W?????[???h???W????
 
-        transform.position = objectWorldPoint; //オブジェクトの座標を変更する
+        transform.position = objectWorldPoint; //?I?u?W?F?N?g????W???X????
     }
 
     private void OnMouseDown()
