@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GFMove : MonoBehaviour
@@ -9,6 +10,7 @@ public class GFMove : MonoBehaviour
     [SerializeField] TextMesh _textMesh;
     [SerializeField] private float speed = 5f;
     [SerializeField] Vector3 _targetPos;
+    [SerializeField] Talk[] _talkDate;
 
     private GameObject _targetObject;
     private Rigidbody2D rb;
@@ -46,10 +48,23 @@ public class GFMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Love"))
         {
             OnGoal?.Invoke(Money, 1);
+            var index = Random.Range(0, _talkDate[0].talkData.Count);
+
+            _textMesh.text = _talkDate[0].talkData[index].Talk;
         }
         if (collision.gameObject.CompareTag("Keep"))
         {
             OnGoal?.Invoke(Money, 0.5f);
+            var index = Random.Range(0, _talkDate[1].talkData.Count);
+
+            _textMesh.text = _talkDate[1].talkData[index].Talk;
+        }
+        if (collision.gameObject.CompareTag("break"))
+        {
+            OnGoal?.Invoke(Money, 0.5f);
+            var index = Random.Range(0, _talkDate[2].talkData.Count);
+
+            _textMesh.text = _talkDate[2].talkData[index].Talk;
         }
         _isGoaled = true;
         rb.velocity = Vector2.zero;
@@ -59,12 +74,11 @@ public class GFMove : MonoBehaviour
     void OnMouseDrag()
     {
         if (_isGoaled) return;
-        //�}�E�X�J�[�\���y�уI�u�W�F�N�g�̃X�N���[�����W���擾
         Vector3 objectScreenPoint =
            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//�X�N���[�����W�����[���h���W�ɕϊ�
+        Vector3 objectWorldPoint = Camera.main.ScreenToWorldPoint(objectScreenPoint);//?X?N???[?????W?????[???h???W????
 
-        transform.position = objectWorldPoint; //�I�u�W�F�N�g�̍��W��ύX����
+        transform.position = objectWorldPoint; //?I?u?W?F?N?g????W???X????
     }
 
     private void OnMouseDown()

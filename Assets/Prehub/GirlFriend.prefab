@@ -189,6 +189,13 @@ MonoBehaviour:
   _textMesh: {fileID: 4439672904524142304}
   speed: 5
   _targetPos: {x: 0, y: -5.55, z: 0}
+  _talkDate:
+  - {fileID: 11400000, guid: b9ee9e690591a614ebdf7df28bd1bf22, type: 2}
+  - {fileID: 11400000, guid: 24585f2746c47234eaaa00474d2b2880, type: 2}
+  - {fileID: 11400000, guid: 746e198a8b727e14a9e40667d4cd8735, type: 2}
+  - {fileID: 11400000, guid: 46353d2ff46d8e545bd41ca76d9ab6f0, type: 2}
+  Money: 0
+  _targetPos: {x: 0, y: -5.55, z: 0}
   Money: 0
 --- !u!50 &-3232678439060848633
 Rigidbody2D:
