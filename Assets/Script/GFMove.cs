@@ -75,7 +75,6 @@ public class GFMove : MonoBehaviour
 
         if (collision.gameObject.CompareTag("brake"))
         {
-            OnGoal?.Invoke(Money, 0.5f);
             var index = Random.Range(0, _talkDate[2].talkData.Count);
             _textMesh.text = _talkDate[2].talkData[index].Talk;
         }

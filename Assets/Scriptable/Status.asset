@@ -25,5 +25,5 @@ MonoBehaviour:
     Money: 1000
   - Colors: {r: 0.9505938, g: 1, b: 0, a: 1}
     Money: 2000
-  - Colors: {r: 0.44855833, g: 0, b: 1, a: 1}
+  - Colors: {r: 0.64672184, g: 0, b: 1, a: 1}
     Money: -3000

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Status _status;
     [SerializeField] SceneLoadManager _sceneLoadManager;
+    [SerializeField] private GameObject _button;
     private float _timer;
     private bool _timerStarted = false;
     
@@ -47,6 +48,11 @@ public class GameManager : MonoBehaviour
             _timeText.text = "0";
             _gfManager.isEnded = true;
             ShowScore();
+            _button.SetActive(true);
+            if (Input.GetButtonDown("Jump"))
+            {
+                _sceneLoadManager.LoadScene("StartScene");
+            }
         }
         else
         {
