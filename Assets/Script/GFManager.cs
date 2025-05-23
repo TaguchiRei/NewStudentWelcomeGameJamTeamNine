@@ -35,7 +35,9 @@ public class GFManager : MonoBehaviour
             obj.GetComponent<SpriteRenderer>().color = colors;
             var gfMove = obj.GetComponent<GFMove>();
             gfMove.Money = money;
+            gfMove.GFIndex = randomStatus;
             gfMove.OnGoal = (score, mag) => _gameManager.AddScore(score, mag);
+            gfMove.CheckLegacy = (index) => _gameManager.LegacyCheck(index);
             nextSpawnTime = Time.time + spawnInterval;
         }
     }
